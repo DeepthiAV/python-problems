@@ -1,0 +1,31 @@
+class Solution(object):
+    def isAnagram(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        n, m = len(s), len(t)
+        letterDict = {}
+        
+        if n != m:
+            return False
+
+        for i in range(n):
+            tLetter, sLetter = t[i], s[i]
+            if tLetter not in letterDict:
+                letterDict[tLetter] = 1
+            else:
+                letterDict[tLetter] += 1
+            
+            if sLetter not in letterDict:
+                letterDict[sLetter] = -1
+            else:
+                letterDict[sLetter] -= 1
+        
+        for value in letterDict.values():
+            if value != 0:
+                return False
+        
+        return True
+        
